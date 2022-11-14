@@ -30,13 +30,18 @@ main:
 	li $s2, 0	#Intialize the counter to 0
 	la $s3, ($s0)	#Set s3 = x
 	
+	beq $s1, 0, expZero #If exponent is zero then
 	j loop
 	exitLoop:
 	
+	resume:
 	j outResult
 	
 	j exit
 	
+expZero:	#Handle edge case if y = 0
+	li $s3, 1
+	j resume
 loop:
 	addi $s2, $s2, 1 #Increment counter by 1
 	beq $s2, $s1, exitLoop	#If counter equals exponent exit
